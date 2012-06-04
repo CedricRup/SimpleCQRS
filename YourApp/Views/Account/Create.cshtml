@@ -1,0 +1,22 @@
+﻿@model YourApp.Models.AccountCreationModel
+
+@{
+    ViewBag.Title = "Account Creation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Account Creation</h2>
+@using (Html.BeginForm())
+{
+    <ul class="unstyled">
+    <li>@Html.LabelFor(u => u.Email) @Html.EditorFor(u => u.Email)</li>
+    <li>@Html.ValidationMessageFor(u => u.Email)</li>
+    <li>@Html.LabelFor(u => u.Password) @Html.EditorFor(u => u.Password)</li>
+    <li>@Html.ValidationMessageFor(u => u.Password)</li>
+    <li>@Html.LabelFor(u => u.PasswordConfirmation) @Html.EditorFor(u => u.PasswordConfirmation)</li>
+    <li>@Html.ValidationMessageFor(u => u.PasswordConfirmation)</li>
+    <li>@Html.LabelFor(u => u.FirstName) @Html.EditorFor(u => u.FirstName)</li>
+    <li>@Html.LabelFor(u => u.LastName) @Html.EditorFor(u => u.LastName)</li>
+    <li><input type="submit" class="btn btn-primary" value="Create"></li>
+    </ul>
+}
