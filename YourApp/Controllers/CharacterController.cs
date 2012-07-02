@@ -1,27 +1,41 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
+using Raven.Client;
 using Services.Queries;
 using YourDomain;
-using YourDomain.Aggregates;
+using Raven.Client.Linq;
 
 namespace YourApp.Controllers
 {
-    public class UserController : Controller
+    public class CharacterController : Controller
     {
-        private readonly UserQueries queries;
+        private readonly IDocumentStore store;
 
-        public UserController(UserQueries queries)
+        public CharacterController(IDocumentStore store)
         {
-            this.queries = queries;
+            this.store = store;
         }
 
         public ActionResult Index(string term)
         {
-            return View(!string.IsNullOrEmpty(term) ? queries.Search(term) : Enumerable.Empty<User>());   
+            using (var session = store.OpenSession())
+            {
+
+                return
+                    View(
+                        session.Query<CharacterByPopularity.Result,CharacterByPopularity>() // on cherche des Result dans l'index CharacterByPopularity
+                        .As<CharacterByPopularity.CharacterWithPopalurity>() //mais les résultats ressembleront à des objets CharacterWithPopalurity
+                        .OrderByDescending(c => c.Popularity).ToList()); // et on trie
+            }
+            
         }
 
         //
-        // GET: /User/Details/5
+        // GET: /Character/Details/5
+
 
         public ActionResult Details(int id)
         {
@@ -29,7 +43,7 @@ namespace YourApp.Controllers
         }
 
         //
-        // GET: /User/Create
+        // GET: /Character/Create
 
         public ActionResult Create()
         {
@@ -37,7 +51,7 @@ namespace YourApp.Controllers
         } 
 
         //
-        // POST: /User/Create
+        // POST: /Character/Create
 
         [HttpPost]
         public ActionResult Create(FormCollection collection)
@@ -55,7 +69,7 @@ namespace YourApp.Controllers
         }
         
         //
-        // GET: /User/Edit/5
+        // GET: /Character/Edit/5
  
         public ActionResult Edit(int id)
         {
@@ -63,7 +77,7 @@ namespace YourApp.Controllers
         }
 
         //
-        // POST: /User/Edit/5
+        // POST: /Character/Edit/5
 
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
@@ -81,7 +95,7 @@ namespace YourApp.Controllers
         }
 
         //
-        // GET: /User/Delete/5
+        // GET: /Character/Delete/5
  
         public ActionResult Delete(int id)
         {
@@ -89,7 +103,7 @@ namespace YourApp.Controllers
         }
 
         //
-        // POST: /User/Delete/5
+        // POST: /Character/Delete/5
 
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)

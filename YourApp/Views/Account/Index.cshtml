@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Services.Queries.UserWithVotes2.Result>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>title</h2>
+<ul>
+@foreach (var user in Model)
+{
+    <li>@user.UserName
+    <ul>@foreach(var test in user.Votes){<li>@test.CharacterId</li>}</ul>
+    </li>
+}
+</ul>

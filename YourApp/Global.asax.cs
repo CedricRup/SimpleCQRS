@@ -8,9 +8,7 @@ using Infrastructure.Events;
 using Raven.Client;
 using Raven.Client.Document;
 using Raven.Client.Indexes;
-using Services.Handlers;
 using Services.Queries;
-using YourDomain;
 
 namespace YourApp
 {
@@ -51,8 +49,7 @@ namespace YourApp
             var builder = new ContainerBuilder();
 
             builder.RegisterInstance(documentStore).As<IDocumentStore>();
-            builder.RegisterType<AccountHandler>().AsSelf();
-            builder.RegisterType<UserHandler>().AsSelf();
+            //builder.RegisterType<UserHandler>().AsSelf();
             builder.RegisterGeneric(typeof (Repository<>)).As(typeof (IRepository<>));
             builder.RegisterType<UserQueries>().AsSelf();
             builder.Register(t => documentStore.OpenSession()).As<IDocumentSession>();
@@ -60,7 +57,6 @@ namespace YourApp
             var container = builder.Build();
 
             var bus = new SimpleBus(container.Resolve);
-            bus.RegisterHandlers(typeof(AccountHandler).Assembly);
 
             builder = new ContainerBuilder();
             builder.RegisterInstance(bus).AsImplementedInterfaces();

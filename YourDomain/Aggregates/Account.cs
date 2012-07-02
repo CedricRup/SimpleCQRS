@@ -1,10 +1,11 @@
 ﻿using Infrastructure;
-using YourDomain.Events;
 
 namespace YourDomain.Aggregates
 {
-    public class Account : Aggregate
+    public class Account 
     {
+
+        public string Id { get; private set; }
         public string Email { get; private set; }
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
@@ -13,7 +14,6 @@ namespace YourDomain.Aggregates
 
         public Account(string email, string firstName, string lastName, string password)
         {
-            AddEvent(new AccountCreated(email, firstName, lastName));
 
             Password = password;
             LastName = lastName;

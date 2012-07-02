@@ -1,0 +1,13 @@
+﻿@model System.Collections.Generic.IEnumerable<Services.Queries.CharacterByPopularity.CharacterWithPopalurity>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>title</h2>
+<ul>
+@foreach (var character in Model)
+{
+    <li>@character.Name => @character.Popularity </li>
+}
+</ul>

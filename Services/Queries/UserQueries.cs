@@ -19,7 +19,7 @@ namespace Services.Queries
         {
             using (var session = documentStore.OpenSession())
             {
-                return session.Query<User, UserByName>().Where(u => u.Name.StartsWith(name)).ToList();
+                return session.Query<User, UserByName>().As<User>();// Where(u => u.Name.StartsWith(name)).AsProjection<User>().ToList();
             }
         }
     }

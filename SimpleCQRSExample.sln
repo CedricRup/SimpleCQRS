@@ -9,6 +9,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{AD4FF6E1-B540-4398-952D-06BBE33BCF77}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{B259B34A-0F1A-4AC1-9AC4-2B6142EB613B}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{B45DD527-2FE5-4BD8-839A-31F2318C66A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +39,10 @@ Global
 		{AD4FF6E1-B540-4398-952D-06BBE33BCF77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD4FF6E1-B540-4398-952D-06BBE33BCF77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD4FF6E1-B540-4398-952D-06BBE33BCF77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B45DD527-2FE5-4BD8-839A-31F2318C66A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B45DD527-2FE5-4BD8-839A-31F2318C66A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B45DD527-2FE5-4BD8-839A-31F2318C66A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B45DD527-2FE5-4BD8-839A-31F2318C66A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,12 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 using Infrastructure.Events;
+using Raven.Client;
+using Raven.Client.Linq;
+using Services.Queries;
 using YourApp.Models;
+using YourDomain.Aggregates;
 using YourDomain.Commands;
 
 namespace YourApp.Controllers
@@ -8,15 +14,17 @@ namespace YourApp.Controllers
     public class AccountController : Controller
     {
         private readonly ICommandSender commandSender;
+        private readonly IDocumentStore documentStore; 
 
-        public AccountController(ICommandSender commandSender)
+        public AccountController(ICommandSender commandSender, IDocumentStore documentStore)
         {
             this.commandSender = commandSender;
+            this.documentStore = documentStore;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string term)
         {
-            return View();
+            return View();   
         }
 
         //
